@@ -3,16 +3,16 @@ Run's PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singular
 
 1) Obtain PacBio's pipeline from github:
 
-  '''
+  ```
   wget https://github.com/PacificBiosciences/HiFi-human-WGS-WDL/releases/download/v2.1.0/hifi-human-wgs-singleton.zip
   unzip hifi-human-wgs-singleton.zip -d hifi-human-wgs-singleton
-  '''
+  ```
 
 2) Retrieve Cromwell from the Broad Institute:
 
-  '''
+  ```
   wget https://github.com/broadinstitute/cromwell/releases/download/87/cromwell-87.jar
-  '''
+  ```
 
 3) Optional test to check Cromwell working with singularity:
 [add test info here…]
@@ -20,11 +20,11 @@ Run's PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singular
 
 4) Download the reference bundle from Zenodo which contains all the static input files to support alignment, variant calling, filtering, and annotation:
 
-  '''
+  ```
   wget https://zenodo.org/records/14027047/files/hifi-wdl-resources-v2.0.0.tar?download=1
   
   tar -xf hifi-wdl-resources-v2.0.0.tar
-  '''
+  ```
   
   All of the <prefix> strings must be updated with local prefixes for both of the tsv index files - note that some lines list multiple paths [could automate this in future but not too many lines to just change manually for now]
 
