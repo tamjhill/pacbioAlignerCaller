@@ -1,5 +1,5 @@
 # pacbioAlignerCaller
-Run's PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singularity - currently just for un-aligned singleton BAM files.
+Runs PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singularity - currently just for un-aligned singleton BAM files.
 
 1) Obtain PacBio's pipeline from github:
 
@@ -29,7 +29,7 @@ Run's PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singular
 
   5)	Copy backend HPC input json file with the following (update options and local paths to the reference files retrieved from the bundle in step 3, and to the unaligned bam files:
      (see the README for explanations of each [add these here]
-    	– GPU cannot be used directly on HPC config settings but will assess if this can be changed now that local config are used instead)
+    	[note, GPU cannot be used directly on HPC config settings but will assess if this can be changed now that local config are used instead)
 [copy the unaligned bam file to local directory for now – will establish whether can access directly through a mount in the near future]
 [double check if the backend here is ok to remain as HPC even though using via local]
 {
@@ -55,7 +55,74 @@ Run's PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singular
 Run with qsub …
 
 details about the outputs, the location and whats included.
-Outputs in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/dfe06e52-26ff-4ddd-944a-775ac6b8cae3
+Outputs are given in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/<workflow-id> . Outputs include:
+
+Consolidate stats:
+	- overall stats (txt file)
+
+Upstream (intermediate files):
+	- merged bam stats:
+		- read length and quality stats
+	- mos depth stats
+	- alignment outputs
+		- aligned bam file
+	- paraphase outputs
+	- hifi cnv outputs
+	- hifi sv sig outputs
+	- structural variant prep vcfs
+	- call coverage dropouts (txt file)
+	- deep variant outputs
+	- target stats (genotyped count, uncalled count)
+	- ped phrank scores (likely only for family mode)
+
+Downstream:
+	- structural variant stats:
+		- breakend count
+		- deletion count (txt file)
+		- duplication count (txt file)
+		- insertion count (txt file)
+		- invertion count (txt file)
+	- roh & small variants:
+		- small variants stats (txt file)
+		- hethom ratio (txt file)
+		- indel count (txt file)
+		- indel dist graph (png)
+		- snv count (txt file)
+		- snv dist heatmap (png)
+		- Runs of homozygosity (ROH) (bed file)
+		- tstv ratio (txt file)
+	- cpg pileup:
+		- combined hap1 count (txt file)
+		- combined hap2 count (txt file)
+		- combined overall count (txt file)
+		- bed and bw files for each of these
+	- hi-phase (haplotype phasing):
+		- mapped % (txt file)
+		- mapped read count (txt file)
+		- mapping stats (txt file)
+		- phased basepairs (txt file)
+		- phase block (txt file)
+		- mg (molecular group) distribution (png)
+		- MAPQ distribution (png)
+		- hi-phase blocks and haplotags (tsv files)
+		- trgt sorted phased vcf
+		- vcf files of phased structural variants and small variants
+		- haplotagged bam file
+	- pbstarphase diplotype
+	- pharmacat
+		- both relating to pharmcat data inc. mos depth regions, 
+			targeted regions for pharmacogenes and vcf files 
+			of phased variants for pharmacogenes 
+
+Teriary analysis:
+	- slivar small variant analysis:
+		- phased norm bcf
+		- phased compound hets (tsv and vcf)
+		- phased slivar (tsv and vcf) - annotated
+	- slivar sv
+		- phased sv list (tsv) - annotated
+	- slivar sv filtered annotated
+		- phased slivar sv (vcf file)
 
 
 ## Testing Cromwell working with singularity:
