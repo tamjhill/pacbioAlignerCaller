@@ -1,0 +1,11 @@
+{
+    "humanwgs_singleton.sample_id": "m84042_241014_171929_s1_bc2011",
+    "humanwgs_singleton.sex": "null",
+    "humanwgs_singleton.hifi_reads": [
+      "/home/skgtth3/longreads/m84042_241014_171929_s1.hifi_reads.bc2011.bam"
+    ],
+    "humanwgs_singleton.ref_map_file": "/home/skgtth3/longreads/references/hifi-wdl-resources-v2/GRCh38.ref_map.v2p0p0.template.tsv",
+    "humanwgs_singleton.tertiary_map_file": "/home/skgtth3/longreads/references/hifi-wdl-resources-v2/GRCh38.tertiary_map.v2p0p0.template.tsv",
+    "humanwgs_singleton.backend": "HPC",
+    "humanwgs_singleton.preemptible": true
+  } 
