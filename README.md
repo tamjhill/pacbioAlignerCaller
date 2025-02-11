@@ -48,13 +48,22 @@ Runs PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singulari
 }
 
 
-7) copy across the Cromwell config file <  > update local settings and ensure that Cromwell uses singularity rather than Docker – found in the file  /home/skgtth3/longreads/singularity_only_backend.conf
+	6) copy across the Cromwell config file singularity_only_backend.conf <  > updates local settings and ensures that Cromwell uses singularity rather than Docker
 
-8) 7)	Copy job submission file with job attributes to run on Myriad using 1 node, 36 cores (max available on one node) and 10G per core. Loads Java which is needed to run Cromwell (needs to be version 11+ for this Cromwell version) and singularity env. 
+8) 	Copy job submission file with job attributes to run on Myriad using 1 node, 36 cores (max available on one node) and 10G per core. Loads Java which is needed to run Cromwell (needs to be version 11+ for this Cromwell version) and singularity env. 
+
+Change the file paths to local paths:
+BACKEND_CONFIG="/path/to/singularity_only_backend.conf"
+CROMWELL_PATH="/home/skgtth3/longreads/pacbio_WGS_pipeline_singleton/cromwell-87.jar"
+SING_WORKFLOW_PATH="/home/skgtth3/longreads/pacbio_WGS_pipeline_singleton/hifi-human-wgs-singleton/singleton.wdl"
+INPUTS_FILE="/home/skgtth3/longreads/pacbio_WGS_pipeline_singleton/hifi-human-wgs-singleton/singleton.hpc.inputs.json"
+
+
 [If issue with connections and retrieving the singularity images, can all be stored locally first... can add this step if needed in future]
 Run with qsub …
 
-details about the outputs, the location and whats included.
+
+
 Outputs are given in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/<workflow-id> . Outputs include:
 
 Consolidate stats:
