@@ -65,77 +65,77 @@ qsub submit_hpc.sh
 ```
 
 
-## Outputs:
-Outputs are given in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/<workflow-id> . Outputs include:
+### Outputs:
+Outputs are given in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/'workflow-id' . Outputs include:
 
-Consolidate stats:
-	- overall stats (txt file)
+Consolidated stats:
+* overall stats (txt file)
 
 Upstream (intermediate files):
-	- merged bam stats:
-		- read length and quality stats
-	- mos depth stats
-	- alignment outputs
-		- aligned bam file
-	- paraphase outputs
-	- hifi cnv outputs
-	- hifi sv sig outputs
-	- structural variant prep vcfs
-	- call coverage dropouts (txt file)
-	- deep variant outputs
-	- target stats (genotyped count, uncalled count)
-	- ped phrank scores (likely only for family mode)
+* merged bam stats:
+	* read length and quality stats
+* mos depth stats
+* alignment outputs
+	* aligned bam file
+* paraphase outputs
+* hifi cnv outputs
+* hifi sv sig outputs
+* structural variant prep vcfs
+* call coverage dropouts (txt file)
+* deep variant outputs
+* target stats (genotyped count, uncalled count)
+* ped phrank scores (likely only for family mode)
 
 Downstream:
-	- structural variant stats:
-		- breakend count
-		- deletion count (txt file)
-		- duplication count (txt file)
-		- insertion count (txt file)
-		- invertion count (txt file)
-	- roh & small variants:
-		- small variants stats (txt file)
-		- hethom ratio (txt file)
-		- indel count (txt file)
-		- indel dist graph (png)
-		- snv count (txt file)
-		- snv dist heatmap (png)
-		- Runs of homozygosity (ROH) (bed file)
-		- tstv ratio (txt file)
-	- cpg pileup:
-		- combined hap1 count (txt file)
-		- combined hap2 count (txt file)
-		- combined overall count (txt file)
-		- bed and bw files for each of these
-	- hi-phase (haplotype phasing):
-		- mapped % (txt file)
-		- mapped read count (txt file)
-		- mapping stats (txt file)
-		- phased basepairs (txt file)
-		- phase block (txt file)
-		- mg (molecular group) distribution (png)
-		- MAPQ distribution (png)
-		- hi-phase blocks and haplotags (tsv files)
-		- trgt sorted phased vcf
-		- vcf files of phased structural variants and small variants
-		- haplotagged bam file
-	- pbstarphase diplotype
-	- pharmacat
-		- both relating to pharmcat data inc. mos depth regions, 
-			targeted regions for pharmacogenes and vcf files 
-			of phased variants for pharmacogenes 
+* structural variant stats:
+	* breakend count
+	* deletion count (txt file)
+	* duplication count (txt file)
+	* insertion count (txt file)
+	* invertion count (txt file)
+* roh & small variants:
+	* small variants stats (txt file)
+	* hethom ratio (txt file)
+	* indel count (txt file)
+	* indel dist graph (png)
+	* snv count (txt file)
+	* snv dist heatmap (png)
+	* Runs of homozygosity (ROH) (bed file)
+	* tstv ratio (txt file)
+* cpg pileup:
+	* combined hap1 count (txt file)
+	* combined hap2 count (txt file)
+	* combined overall count (txt file)
+	* bed and bw files for each of these
+* hi-phase (haplotype phasing):
+	* mapped % (txt file)
+	* mapped read count (txt file)
+	* mapping stats (txt file)
+	* phased basepairs (txt file)
+	* phase block (txt file)
+	* mg (molecular group) distribution (png)
+	* MAPQ distribution (png)
+	* hi-phase blocks and haplotags (tsv files)
+	* trgt sorted phased vcf
+	* vcf files of phased structural variants and small variants
+	* haplotagged bam file
+* pbstarphase diplotype
+* pharmacat
+	* both relating to pharmcat data inc. mos depth regions, 
+		targeted regions for pharmacogenes and vcf files 
+		of phased variants for pharmacogenes 
 
 Teriary analysis:
-	- slivar small variant analysis:
-		- phased norm bcf
-		- phased compound hets (tsv and vcf)
-		- phased slivar (tsv and vcf) - annotated
-	- slivar sv
-		- phased sv list (tsv) - annotated
-	- slivar sv filtered annotated
-		- phased slivar sv (vcf file)
+* slivar small variant analysis:
+	* phased norm bcf
+	* phased compound hets (tsv and vcf)
+	* phased slivar (tsv and vcf) - annotated
+* slivar sv
+	* phased sv list (tsv) - annotated
+	* slivar sv filtered annotated
+		* phased slivar sv (vcf file)
 
 
-## Testing Cromwell working with singularity:
+### Testing Cromwell working with singularity:
 [add test info here…]
 
