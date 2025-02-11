@@ -65,7 +65,7 @@ qsub submit_hpc.sh
 ```
 
 
-#Outputs:
+## Outputs:
 Outputs are given in a directory with the format ../cromwell_output/cromwell-executions/humanwgs_singleton/<workflow-id> . Outputs include:
 
 Consolidate stats:
