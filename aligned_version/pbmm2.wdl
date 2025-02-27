@@ -107,10 +107,6 @@ task pbmm2_align_wgs {
 
     read -r kinetics base_modification aligned haplotagged <<< "$(python3 ./detect_bam_tags.py | jq -r '. | [.kinetics, .base_modification, .aligned, .haplotagged] | @tsv')"
 
-    if [ "$aligned" = true ]; then
-      echo "Input ~{basename(bam)} is already aligned.  Alignments and and haplotype tags will be stripped."
-    fi
-
     if [ "$base_modification" = false ]; then
       echo "Input ~{basename(bam)} does not contain base modification tags.  5mCpG pileups will not be generated."
     fi
@@ -122,21 +118,32 @@ task pbmm2_align_wgs {
       fi
     fi
 
-    pbmm2 --version
+    if [ "$aligned" = true ]; then
+      echo "Input ~{basename(bam)} is already aligned.  Skipping alignment, haplotype tags will be stripped."
+      cp ~{bam} ~{sample_id}.~{movie}.~{ref_name}.aligned.bam
+      cp ~{bam}.bai ~{sample_id}.~{movie}.~{ref_name}.aligned.bam.bai 2>/dev/null || true
+    else
+      echo "Input ~{basename(bam)} is unaligned. Running pbmm2 alignment."
 
-    pbmm2 align \
-      --num-threads ~{threads} \
-      --sort-memory 4G \
-      --preset HIFI \
-      --sample ~{sample_id} \
-      --log-level INFO \
-      --sort \
-      ~{true='--strip' false='' strip_kinetics} \
-      --unmapped \
-      ~{ref_fasta} \
-      ~{bam} \
-      aligned.bam
+      pbmm2 --version
 
+      pbmm2 align \
+        --num-threads ~{threads} \
+        --sort-memory 4G \
+        --preset HIFI \
+        --sample ~{sample_id} \
+        --log-level INFO \
+        --sort \
+        ~{true='--strip' false='' strip_kinetics} \
+        --unmapped \
+        ~{ref_fasta} \
+        ~{bam} \
+        aligned.bam
+      
+      mv --verbose aligned.bam ~{sample_id}.~{movie}.~{ref_name}.aligned.bam
+      mv --verbose aligned.bam.bai ~{sample_id}.~{movie}.~{ref_name}.aligned.bam.bai
+    fi
+ 
     if [ "$haplotagged" = true ]; then
       # remove haplotype tags
       samtools view \
@@ -146,13 +153,11 @@ task pbmm2_align_wgs {
         -o ~{sample_id}.~{movie}.~{ref_name}.aligned.bam \
         aligned.bam \
       && rm --verbose aligned.bam aligned.bam.bai
-      samtools index \
-        ~{if threads > 1 then "-@ " + (threads - 1) else ""} \
-        ~{sample_id}.~{movie}.~{ref_name}.aligned.bam
-    else
-      mv --verbose aligned.bam ~{sample_id}.~{movie}.~{ref_name}.aligned.bam
-      mv --verbose aligned.bam.bai ~{sample_id}.~{movie}.~{ref_name}.aligned.bam.bai
     fi
+
+    samtools index \
+      ~{if threads > 1 then "-@ " + (threads - 1) else ""} \
+      ~{sample_id}.~{movie}.~{ref_name}.aligned.bam
 
     wait ${BAM_STATS_PID}
   >>>
