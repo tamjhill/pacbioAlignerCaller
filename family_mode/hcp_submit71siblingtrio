@@ -1,0 +1,22 @@
+#!/bin/bash -l
+# Batch script to run an OpenMP threaded job under SGE.
+#$ -l h_rt=15:0:0
+#$ -l mem=10G
+#$ -l tmpfs=35G
+#$ -N PacBioTrio
+#$ -pe smp 36
+#$ -wd /home/skgtth3/Scratch/cromwell_output
+#$ -m be
+#$ -M tamara.hill@ucl.ac.uk
+
+echo "Loading modules..."
+source /etc/profile.d/modules.sh
+module load singularity-env/1.0.0
+module load java/temurin-11/11.0.14.1_1
+
+BACKEND_CONFIG="/home/skgtth3/longreads/singularity_only_backend.conf"
+CROMWELL_PATH="/home/skgtth3/longreads/cromwell-87.jar"
+FAMILY_WORKFLOW_PATH="/home/skgtth3/longreads/pacbio_WGS_pipeline_family/hifi-human-wgs-family/family.wdl"
+INPUTS_FILE="/home/skgtth3/longreads/pacbio_WGS_pipeline_family/family.hpc.inputs.json"
+
+java -Dconfig.file=$BACKEND_CONFIG -jar $CROMWELL_PATH run $FAMILY_WORKFLOW_PATH  -i $INPUTS_FILE
