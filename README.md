@@ -25,7 +25,7 @@ Runs PacBio's HiFi-human-WGS-WDL pipeline on Myriad using Cromwell and singulari
   tar -xf hifi-wdl-resources-v2.0.0.tar
   ```
   
-  All of the <prefix> strings must be updated with local prefixes for both of the tsv index files - note that some lines list multiple paths [could automate this in future but not too many lines to just change manually for now]
+  **All of the <prefix> strings must be updated with local prefixes for both of the tsv index files** - note that some lines list multiple paths [could automate this in future but not too many lines to just change manually for now]
 
   (Alternatively - keep the paths to my reference files and I'll change the permissions.)
 
