@@ -1,0 +1,38 @@
+  {
+    "humanwgs_family.family": {
+      "family_id": "LRM071_siblingtrio",
+      "samples": [
+        {
+          "sample_id": "LRM071",
+          "hifi_reads": [
+            "/home/skgtth3/Scratch/longreads/input_files/pacbio_batch2/LRM071.blood.GRCh38.bam"
+          ],
+          "affected": true,
+          "sex": "null",
+          "father_id": "LRM073",
+          "mother_id": "LRM072"
+        },
+        {
+          "sample_id": "LRM073",
+          "hifi_reads": [
+            "/home/skgtth3/Scratch/longreads/input_files/pacbio_batch2/LRM073.blood.GRCh38.bam"
+          ],
+          "affected": false,
+          "sex": "MALE"
+        },
+        {
+          "sample_id": "LRM072",
+          "hifi_reads": [
+            "/home/skgtth3/Scratch/longreads/input_files/pacbio_batch2/LRM072.blood.GRCh38.bam"
+          ],
+          "affected": false,
+          "sex": "FEMALE"
+        }
+      ]
+    },
+    "humanwgs_family.ref_map_file": "/home/skgtth3/longreads/references/hifi-wdl-resources-v2/GRCh38.ref_map.v2p0p0.template.tsv",
+    "humanwgs_family.tertiary_map_file": "/home/skgtth3/longreads/references/hifi-wdl-resources-v2/GRCh38.tertiary_map.v2p0p0.template.tsv",
+    "humanwgs_family.backend": "HPC",
+    "humanwgs_family.gpu": false,
+    "humanwgs_family.preemptible": true
+  }
