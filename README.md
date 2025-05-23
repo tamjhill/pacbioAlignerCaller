@@ -139,3 +139,10 @@ Teriary analysis:
 ### Testing Cromwell working with singularity:
 [add test info here…]
 
+###  How we copy results to RDS
+Go to cromwell execution directory, and copy like this directlry by directory.  There are many more files, we want only what is under execution
+```
+rsync -avS --progress --include='*/execution/**' --exclude='*/inputs/**' 2c7bb7ac-8ccd-45bf-8eac-aa9fac3490d0  skgtrk2@rdp-ssh.arc.ucl.ac.uk:/rdss/rd01/ritd-ag-project-rd01is-rdspi25/LongReads/PacBio/Results/PacBioVariants/
+
+```
+
